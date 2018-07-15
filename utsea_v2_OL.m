@@ -1,20 +1,22 @@
+% all the parameters are expressed in linear space
+
 % m = 360; %kg
 % b = 2200; %N*sec/m
 
-r_joint = 0.025;
+r_joint = 0.025;%m/rad
 IM = 360;
-IL = 22.4;% I_arm = 0.014 kg-m^2, r_pivot = 0.025 m, IL = I_arm/r_pivot 
-bM = 2200;% b_arm = 0.1 Nm-s/rad
+IL = 22.4;% I_arm = 0.014 kg-m^2, r_pivot = 0.025 m, IL = I_arm/r_joint^2 
+bM = 2200;
 bL = 160;
 k = 350000; %N/m
 
 Np = 4.0;
 lead = 0.003;
 N = 2*3.14159*Np/lead;
-i2T = 0.0276; %nm/a
+i2T = 0.0276; %Nm/A, in joint (rotary) space
 eff = 0.9;
 beta1 = N * i2T * eff;
-ktau = i2T/r_joint;
+ktau = i2T/r_joint; % N/A, in linear space
 
 % % linear parameters
 % IM = gearRatio^2 * 1.06 * 10^(-5)/r_knee^2;%360;

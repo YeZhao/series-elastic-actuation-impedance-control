@@ -50,10 +50,16 @@ for i = 1 : 4
         [x,fval] = fsolve(@(x) criticaldamp_both_zeta_1(x,omega1,omega2,zeta1,zeta2), x0, options);
         x = exp(x);
         
+        % linear space
         Kq = x(1);
         Bq = x(2);
         Ktau = x(3);
         Btau = x(4);
+
+        % to obtain the controller gains in Table I in the paper, do the following scaling
+        % Kq*r_joint^2 --> Kq, Bq*r_joint^2 --> Bq, r_joint = 0.025 is the mapping between linear and rotary motion
+        % Ktau/r_joint --> Ktau, Btau/r_joint --> Btau, this mapping is related to the motor torque constant beta
+        % in either space, beta*Ktau and beta*Btau should have the same value (beta is always combined with Ktau or Btau)
         
         KqArray(i) = Kq;
         BqArray(i) = Bq;
